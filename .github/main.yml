@@ -3,21 +3,21 @@ name: Student Website Deployment
 on:
   push:
     branches:
-      - main  # This triggers the "CD" part of CI/CD
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --follow-symlinks --delete
+          args: --follow-symlinks --delete --exclude '.git/*'
         env:
-          AWS_S3_BUCKET: 'stdnt-devops-bucket-2026' # REPLACE THIS with your bucket name
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: 'us-east-1' # Change if your bucket is in another region
+          AWS_S3_BUCKET: 'cicd-aayush'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACESS_SECRET }}
+          AWS_REGION: 'us-east-2'
